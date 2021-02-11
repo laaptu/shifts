@@ -3,6 +3,7 @@ import org.ahivs.dependencies.*
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {

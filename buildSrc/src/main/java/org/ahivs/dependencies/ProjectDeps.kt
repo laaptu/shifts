@@ -5,6 +5,9 @@ object Version {
     const val gradleAndroid = "4.1.1"
     const val gradleJunit5 = "1.7.0.0"
     const val coroutines = "1.3.9"
+    const val okhttp = "4.2.0"
+    const val dagger = "2.24"
+    const val retrofit = "2.6.1"
 
     object Android {
         const val appcompat = "1.2.0"
@@ -19,10 +22,27 @@ object Version {
     //testlib version
     const val mockito = "2.25.0"
     const val junit5 = "5.5.1"
+    const val archTesting = "2.1.0"
 }
 
 object Libs {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Version.kotlin}"
+
+    const val dagger = "com.google.dagger:dagger:${Version.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Version.dagger}"
+    const val daggerAndroid = "com.google.dagger:dagger-android:${Version.dagger}"
+    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Version.dagger}"
+    const val daggerAndroidProcessor =
+        "com.google.dagger:dagger-android-processor:${Version.dagger}"
+
+    //retrofit
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
+    const val retrofitRxJava = "com.squareup.retrofit2:adapter-rxjava2:${Version.retrofit}"
+    const val retrofitJsonConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+
+    const val okHttpLoggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
+    const val okHttpClient = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
 
     //android provided libs
     object Android {
@@ -53,7 +73,7 @@ object TestLibs {
     const val junit5Params = "org.junit.jupiter:junit-jupiter-params:${Version.junit5}"
 
     object Android {
-        const val arch = "androidx.arch.core:core-testing:${Version.Android.lifecycleVersion}"
+        const val arch = "androidx.arch.core:core-testing:${Version.archTesting}"
     }
 }
 
