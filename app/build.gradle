@@ -1,0 +1,53 @@
+import org.ahivs.dependencies.*
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion Config.compileSdkVersion
+
+    defaultConfig {
+        applicationId Config.applicationId
+        minSdkVersion Config.minSdkVersion
+        targetSdkVersion Config.targetSdkVersion
+        versionCode Config.versionCode
+        versionName Config.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation Libs.kotlin
+    implementation Libs.Android.coreKtx
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.material
+    implementation Libs.Android.constraintLayout
+    implementation Libs.Android.liveData
+    implementation Libs.Android.viewModel
+
+    testImplementation TestLibs.junit5
+    testImplementation TestLibs.junit5Params
+    testImplementation TestLibs.mockitoCore
+    testImplementation TestLibs.mockitoInline
+    testImplementation TestLibs.coroutine
+    testImplementation TestLibs.Android.arch
+    testRuntimeOnly TestLibs.junit5Engine
+
+}
