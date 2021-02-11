@@ -1,25 +1,29 @@
-import org.ahivs.dependencies.Libs
+import org.ahivs.dependencies.*
 
 apply from: '../../scripts/androidlibs.gradle'
 
+android {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':base')
     implementation Libs.kotlin
+    implementation Libs.Android.coreKtx
+    implementation Libs.Android.appcompat
     implementation Libs.Android.material
+    implementation Libs.Android.constraintLayout
+    implementation Libs.Android.liveData
+    implementation Libs.Android.viewModel
     implementation Libs.Android.androidxActivity
+
     //Dagger
     implementation Libs.dagger
     kapt Libs.daggerCompiler
     implementation Libs.daggerAndroid
     implementation Libs.daggerAndroidSupport
     kapt Libs.daggerAndroidProcessor
-
-    implementation Libs.okHttpClient
-    implementation Libs.okHttpLoggingInterceptor
-    api Libs.retrofit
-    implementation Libs.retrofitJsonConverter
-}
-
-configurations {
-    baseTestImplementation.extendsFrom testImplementation
 }

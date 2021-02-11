@@ -36,20 +36,17 @@ android {
 
 dependencies {
     implementation project(':base')
+    implementation project(':featureShifts')
     implementation Libs.kotlin
     implementation Libs.Android.coreKtx
     implementation Libs.Android.appcompat
     implementation Libs.Android.material
-    implementation Libs.Android.constraintLayout
-    implementation Libs.Android.liveData
-    implementation Libs.Android.viewModel
 
-    testImplementation TestLibs.junit5
-    testImplementation TestLibs.junit5Params
-    testImplementation TestLibs.mockitoCore
-    testImplementation TestLibs.mockitoInline
-    testImplementation TestLibs.coroutine
-    testImplementation TestLibs.Android.arch
-    testRuntimeOnly TestLibs.junit5Engine
+    //Dagger
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerAndroidSupport
+    kapt Libs.daggerAndroidProcessor
 
 }

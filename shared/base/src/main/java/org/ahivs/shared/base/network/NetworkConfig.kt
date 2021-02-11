@@ -18,8 +18,8 @@ class NetworkConfig @Inject constructor() {
 }
 
 object Urls {
-    const val BASE = "https://apjoqdqpi3.execute-api.us-west-2.amazonaws.com/dmc/"
-    const val SHIFT_START = "shift/start"
-    const val SHIFT_END = "shift/end"
-    const val SHIFT_LIST = "shifts"
+    const val BASE = "https://apjoqdqpi3.execute-api.us-west-2.amazonaws.com/dmc"
+    const val SHIFT_START = "/shift/start"
+    const val SHIFT_END = "/shift/end"
+    const val SHIFT_LIST = "/shifts"
 }

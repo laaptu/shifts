@@ -1,6 +1,5 @@
 package org.ahivs.shared.base.di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

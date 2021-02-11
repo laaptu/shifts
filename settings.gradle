@@ -1,4 +1,6 @@
+include ':featureShifts'
 include ':base'
 include ':app'
 rootProject.name = "Shifts"
 project(':base').projectDir = new File(rootDir, 'shared/base')
+project(':featureShifts').projectDir = new File(rootDir, 'features/shifts')
