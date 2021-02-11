@@ -1,0 +1,25 @@
+import org.ahivs.dependencies.Libs
+
+apply from: '../../scripts/androidlibs.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libs.kotlin
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.material
+    //Dagger
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerAndroidSupport
+    kapt Libs.daggerAndroidProcessor
+
+    implementation Libs.okHttpClient
+    implementation Libs.okHttpLoggingInterceptor
+    api Libs.retrofit
+    implementation Libs.retrofitJsonConverter
+}
+
+configurations {
+    baseTestImplementation.extendsFrom testImplementation
+}

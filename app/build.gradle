@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation project(':base')
     implementation Libs.kotlin
     implementation Libs.Android.coreKtx
     implementation Libs.Android.appcompat
