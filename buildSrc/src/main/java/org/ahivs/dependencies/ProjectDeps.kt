@@ -8,6 +8,7 @@ object Version {
     const val okhttp = "4.2.0"
     const val dagger = "2.24"
     const val retrofit = "2.6.1"
+    const val timber = "4.7.1"
 
     object Android {
         const val appcompat = "1.2.0"
@@ -43,6 +44,8 @@ object Libs {
     const val okHttpLoggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
     const val okHttpClient = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
+
+    const val timber = "com.jakewharton.timber:timber:${Version.timber}"
 
     //android provided libs
     object Android {

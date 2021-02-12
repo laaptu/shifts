@@ -21,7 +21,7 @@ class ShiftActionViewModel @Inject constructor(
                 is LocationFetchSuccess -> println(
                     "${locationInfo.latitude} :: ${locationInfo.longitude}"
                 )
-                is LocationFetchError -> println(locationInfo.errorMsg)
+                is LocationFetchError -> println("ERROR +$locationInfo.errorMsg}")
             }
         }
     }

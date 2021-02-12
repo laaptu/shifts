@@ -5,7 +5,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.ahivs.shared.base.network.NetworkConfig
-import org.ahivs.shared.base.network.TokenInterceptor
+import org.ahivs.shared.base.network.HeaderInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -18,10 +18,10 @@ class NetworkModule {
     fun provideOkHttpClient(
         networkConfig: NetworkConfig,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        tokenInterceptor: TokenInterceptor
+        headerInterceptor: HeaderInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(tokenInterceptor)
+            .addInterceptor(headerInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(networkConfig.connectionTimeOutInSec, TimeUnit.SECONDS)
             .readTimeout(networkConfig.readTimeOutInSec, TimeUnit.SECONDS)

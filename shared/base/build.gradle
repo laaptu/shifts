@@ -20,6 +20,8 @@ dependencies {
     implementation Libs.okHttpLoggingInterceptor
     api Libs.retrofit
     implementation Libs.retrofitJsonConverter
+
+    implementation Libs.timber
 }
 
 configurations {

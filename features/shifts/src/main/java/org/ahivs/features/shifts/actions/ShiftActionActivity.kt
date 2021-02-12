@@ -9,6 +9,10 @@ import org.ahivs.shared.base.ui.permissions.PermissionsRequest
 
 class ShiftActionActivity : ViewModelActivity<ShiftActionViewModel>() {
 
+    companion object {
+        private val TAG = ShiftActionActivity::class.java.simpleName
+    }
+
     override val viewModel: ShiftActionViewModel by viewModels { viewModelFactory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +26,11 @@ class ShiftActionActivity : ViewModelActivity<ShiftActionViewModel>() {
     }
 
     override fun onPermissionsGranted() {
-        println("Permission granted Yoho!!!!")
-        viewModel.getLocation()
+        logger.debug(TAG, "GRANTED = ${Manifest.permission.ACCESS_FINE_LOCATION}")
     }
 
     override fun onPermissionsDenied(deniedPermissions: List<String>) {
-        println("Perimissions denied")
-        deniedPermissions.forEach {
-            println(it)
-        }
+        logger.error(TAG, "DENIED = ${Manifest.permission.ACCESS_FINE_LOCATION}")
     }
 
 

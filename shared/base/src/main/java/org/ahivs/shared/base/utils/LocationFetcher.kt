@@ -20,29 +20,40 @@ import javax.inject.Singleton
  *  otherwise it won't return the needed location info
  */
 @AppScope
-class LocationFetcher @Inject constructor(applicationContext: Context) {
+class LocationFetcher @Inject constructor(applicationContext: Context, private val logger: Logger) {
+
+    companion object {
+        private val TAG = LocationFetcher::class.java.simpleName
+    }
+
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(applicationContext)
     }
 
-    private val cancellationTokenSource = CancellationTokenSource()
+    private var cancellationTokenSource: CancellationTokenSource? = null
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @SuppressLint("MissingPermission")
     private suspend fun fetchLocation(): LocationInfo {
         return suspendCancellableCoroutine { cont ->
+            cancellationTokenSource = CancellationTokenSource()
             val currentLocationTask: Task<Location> = fusedLocationClient.getCurrentLocation(
                 PRIORITY_HIGH_ACCURACY,
-                cancellationTokenSource.token
+                cancellationTokenSource?.token
             )
 
             val completeListener = OnCompleteListener<Location> { task ->
                 if (task.isSuccessful && task.result != null) {
                     val location: Location = task.result
+                    logger.debug(
+                        TAG,
+                        "Location fetched successfully ${location.latitude} & ${location.longitude}"
+                    )
                     cont.resume(LocationFetchSuccess(location.latitude, location.longitude)) {}
                     cancel()
                 } else {
                     val exception = task.exception
+                    logger.error(TAG, "Location fetch error:\n ${exception?.message}")
                     cont.resume(
                         LocationFetchError(
                             exception?.message ?: "Error fetching location"
@@ -59,7 +70,7 @@ class LocationFetcher @Inject constructor(applicationContext: Context) {
     }
 
     fun cancel() {
-        cancellationTokenSource.cancel()
+        cancellationTokenSource?.cancel()
     }
 
     suspend fun fetchCurrentLocation(): LocationInfo {
