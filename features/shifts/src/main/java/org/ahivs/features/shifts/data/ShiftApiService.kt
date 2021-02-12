@@ -1,4 +1,4 @@
-package org.ahivs.features.shifts
+package org.ahivs.features.shifts.data
 
 import org.ahivs.shared.base.network.Network
 import retrofit2.http.Body

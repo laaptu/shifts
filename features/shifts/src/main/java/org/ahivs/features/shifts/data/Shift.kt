@@ -1,4 +1,4 @@
-package org.ahivs.features.shifts
+package org.ahivs.features.shifts.data
 
 /*
 *

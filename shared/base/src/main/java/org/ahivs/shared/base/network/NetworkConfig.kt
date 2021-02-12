@@ -28,6 +28,6 @@ object Network {
 
     val headers: Map<String, String> = mapOf(
         "Content-Type" to "application/json",
-        "Authorization" to "Deputy 117a211f76f0aa5fbc9b7143b793fdbaf7088c03"
+        "Authorization" to "Deputy 117a211f76f0aa5fbc9b7143b793fdbaf7088c07"
     )
 }

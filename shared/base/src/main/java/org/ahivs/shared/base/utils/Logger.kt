@@ -17,4 +17,5 @@ class Logger @Inject constructor() {
 
     fun error(tag: String, msg: String) = Timber.tag(tag).e(msg)
 
+    fun warn(tag: String, msg: String) = Timber.tag(tag).w(msg)
 }

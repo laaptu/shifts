@@ -1,7 +1,7 @@
 package org.ahivs.features.shifts.actions
 
-import org.ahivs.features.shifts.ShiftApiService
-import org.ahivs.features.shifts.ShiftData
+import org.ahivs.features.shifts.data.ShiftApiService
+import org.ahivs.features.shifts.data.ShiftData
 import javax.inject.Inject
 
 class ShiftActionRepo @Inject constructor(private val shiftApiService: ShiftApiService) {
