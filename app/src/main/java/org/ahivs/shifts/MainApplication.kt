@@ -8,7 +8,7 @@ import org.ahivs.shared.base.di.DaggerBaseComponent
 import org.ahivs.shifts.di.DaggerAppComponent
 import javax.inject.Inject
 
-class MainApplication : Application(),HasAndroidInjector {
+class MainApplication : Application(), HasAndroidInjector {
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
@@ -16,8 +16,9 @@ class MainApplication : Application(),HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder().addBaseComponent(
-            DaggerBaseComponent.create()
-        ).build().injectOnApp(this)
+        DaggerAppComponent.builder()
+            .addBaseComponent(DaggerBaseComponent.create())
+            .addContext(this)
+            .build().injectOnApp(this)
     }
 }

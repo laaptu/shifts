@@ -7,6 +7,8 @@ dependencies {
     implementation Libs.kotlin
     implementation Libs.Android.material
     implementation Libs.Android.androidxActivity
+    implementation Libs.Android.playServicesLocation
+    implementation Libs.Android.coroutines
     //Dagger
     implementation Libs.dagger
     kapt Libs.daggerCompiler

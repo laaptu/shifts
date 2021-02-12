@@ -52,7 +52,6 @@ abstract class PermissionActivity : BaseActivity(),
                 )
 
             else -> requestPermissions(deniedPermissions)
-
         }
     }
 
@@ -129,14 +128,14 @@ abstract class PermissionActivity : BaseActivity(),
 
     private fun notifySuccess() {
         permissionsRequest?.apply {
-            permissionsRequestCallback.onPermissionsGranted()
+            onPermissionsGranted()
         }
         clearRequest()
     }
 
     private fun notifyFailure(deniedPermissions: List<String>) {
         permissionsRequest?.apply {
-            permissionsRequestCallback.onPermissionsDenied(deniedPermissions)
+            onPermissionsDenied(deniedPermissions)
         }
         clearRequest()
     }
@@ -153,17 +152,16 @@ abstract class PermissionActivity : BaseActivity(),
     private fun isPermissionGranted(permission: String): Boolean =
         ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
+    open fun onPermissionsGranted(){
 
-}
+    }
+    open fun onPermissionsDenied(deniedPermissions: List<String>){
 
-interface PermissionsRequestCallback {
-    fun onPermissionsGranted()
-    fun onPermissionsDenied(deniedPermissions: List<String>)
+    }
 }
 
 class PermissionsRequest(
     val permissions: List<String>,
-    val permissionsRequestCallback: PermissionsRequestCallback,
     val rationalMsgId: Int = 0,
     val deniedMsgId: Int = 0
 )

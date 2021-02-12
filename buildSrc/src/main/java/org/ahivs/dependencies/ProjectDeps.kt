@@ -16,7 +16,7 @@ object Version {
         const val material = "1.3.0"
         const val constraintLayoutVersion = "2.0.4"
         const val androidxActivity = "1.1.0"
-
+        const val playServicesLocation = "17.1.0"
     }
 
     //testlib version
@@ -59,7 +59,8 @@ object Libs {
             "androidx.activity:activity-ktx:${Version.Android.androidxActivity}"
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
-
+        const val playServicesLocation =
+            "com.google.android.gms:play-services-location:${Version.Android.playServicesLocation}"
     }
 }
 
