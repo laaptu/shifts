@@ -9,6 +9,7 @@ object Version {
     const val dagger = "2.24"
     const val retrofit = "2.6.1"
     const val timber = "4.7.1"
+    const val picasso = "2.71828"
 
     object Android {
         const val appcompat = "1.2.0"
@@ -18,6 +19,7 @@ object Version {
         const val constraintLayoutVersion = "2.0.4"
         const val androidxActivity = "1.1.0"
         const val playServicesLocation = "17.1.0"
+        const val swipeRefreshLayout = "1.1.0"
     }
 
     //testlib version
@@ -46,6 +48,7 @@ object Libs {
     const val okHttpClient = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
 
     const val timber = "com.jakewharton.timber:timber:${Version.timber}"
+    const val picasso = "com.squareup.picasso:picasso:${Version.picasso}"
 
     //android provided libs
     object Android {
@@ -64,6 +67,8 @@ object Libs {
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
         const val playServicesLocation =
             "com.google.android.gms:play-services-location:${Version.Android.playServicesLocation}"
+        const val swipeRefreshLayout =
+            "androidx.swiperefreshlayout:swiperefreshlayout:${Version.Android.swipeRefreshLayout}"
     }
 }
 

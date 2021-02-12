@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="shift"
+            type="org.ahivs.features.shifts.data.Shift" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mild_white"
+        android:padding="@dimen/item_padding">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgView"
+            android:layout_width="@dimen/img_dimen"
+            android:layout_height="@dimen/img_dimen"
+            android:background="@color/cool_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{shift.image}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_padding"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="3dp"
+            android:text="@{@string/info_shift(shift.start,shift.end,shift.getStartLocation(),shift.getEndLocation())}"
+            android:textColor="@color/mild_black"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@id/imgView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Start:0000\nEnd:1111\nStartLocation:000\nEndLocation:000" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:tint="@color/mid_red"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInfo"
+            app:srcCompat="@drawable/ic_delete"
+            app:showView="@{shift.end.empty}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

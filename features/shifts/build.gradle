@@ -6,6 +6,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -19,6 +25,7 @@ dependencies {
     implementation Libs.Android.liveData
     implementation Libs.Android.viewModel
     implementation Libs.Android.androidxActivity
+    implementation Libs.Android.swipeRefreshLayout
 
     //Dagger
     implementation Libs.dagger
@@ -26,5 +33,7 @@ dependencies {
     implementation Libs.daggerAndroid
     implementation Libs.daggerAndroidSupport
     kapt Libs.daggerAndroidProcessor
+
+    implementation Libs.picasso
 
 }

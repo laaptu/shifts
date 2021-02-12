@@ -1,4 +1,4 @@
-package org.ahivs.features.shifts.list
+package org.ahivs.features.shifts.list.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels

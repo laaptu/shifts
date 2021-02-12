@@ -1,4 +1,4 @@
-package org.ahivs.features.shifts.list
+package org.ahivs.features.shifts.list.domain
 
 import org.ahivs.features.shifts.data.ShiftApiService
 import org.ahivs.shared.base.utils.Logger

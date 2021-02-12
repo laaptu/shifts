@@ -3,7 +3,7 @@ package org.ahivs.shifts
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.ahivs.features.shifts.list.ShiftsListActivity
+import org.ahivs.features.shifts.list.ui.ShiftsListActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

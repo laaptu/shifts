@@ -2,4 +2,5 @@
 <resources>
     <string name="info_location_access">Location access is needed to perform actions on shift. Please grant it.</string>
     <string name="info_go_settings_for_location"> Would you like to activate location access from settings?</string>
+    <string name="info_shift">Start Time: %1$s\nEnd Time: %2$s\n Start Location: %3$s\nEnd Location: %4$s</string>
 </resources>

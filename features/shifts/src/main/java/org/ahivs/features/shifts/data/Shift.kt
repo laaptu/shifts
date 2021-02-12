@@ -10,4 +10,7 @@ data class Shift(
     val id: Int, val start: String, val end: String, val startLatitude: String,
     val startLongitude: String, val endLatitude: String, val endLongitude: String,
     val image: String
-)
+) {
+    fun getStartLocation(): String = startLatitude.plus("/").plus(startLongitude)
+    fun getEndLocation(): String = endLatitude.plus("/").plus(endLongitude)
+}

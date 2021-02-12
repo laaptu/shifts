@@ -1,8 +1,11 @@
-package org.ahivs.features.shifts.list
+package org.ahivs.features.shifts.list.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.ahivs.features.shifts.list.domain.FetchError
+import org.ahivs.features.shifts.list.domain.FetchSuccess
+import org.ahivs.features.shifts.list.domain.ShiftsListRepo
 import javax.inject.Inject
 
 class ShiftsListViewModel @Inject constructor(private val shiftsListRepo: ShiftsListRepo) :
