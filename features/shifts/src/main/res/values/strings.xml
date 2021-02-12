@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="info_location_access">Location access is needed to perform actions on shift. Please grant it.</string>
+    <string name="info_go_settings_for_location"> Would you like to activate location access from settings?</string>
+</resources>
