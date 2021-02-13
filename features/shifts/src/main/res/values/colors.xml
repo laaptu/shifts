@@ -4,4 +4,5 @@
     <color name="cool_white">#F2F2F2</color>
     <color name="mild_black">#2B2B2B</color>
     <color name="mid_red">#99FF0000</color>
+    <color name="icon_tint">#9E9E9E</color>
 </resources>

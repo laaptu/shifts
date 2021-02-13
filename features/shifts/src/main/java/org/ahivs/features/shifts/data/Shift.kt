@@ -1,5 +1,7 @@
 package org.ahivs.features.shifts.data
 
+import org.ahivs.features.shifts.utils.DateUtils
+
 /*
 *
 * */
@@ -13,4 +15,6 @@ data class Shift(
 ) {
     fun getStartLocation(): String = startLatitude.plus("/").plus(startLongitude)
     fun getEndLocation(): String = endLatitude.plus("/").plus(endLongitude)
+    fun getStartTime(): String = DateUtils.getUIDateFormat(start)
+    fun getEndTime(): String = DateUtils.getUIDateFormat(end)
 }

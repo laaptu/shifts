@@ -2,4 +2,5 @@
 <resources>
     <dimen name="img_dimen">120dp</dimen>
     <dimen name="item_padding">15dp</dimen>
+    <dimen name="action_item_margin">10dp</dimen>
 </resources>

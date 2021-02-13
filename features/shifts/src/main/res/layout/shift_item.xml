@@ -45,7 +45,7 @@
             android:fontFamily="sans-serif-medium"
             android:lineSpacingExtra="3dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="@{@string/info_shift(shift.start,shift.end,shift.getStartLocation(),shift.getEndLocation())}"
+            android:text="@{@string/info_shift(shift.getStartTime(),shift.getEndTime(),shift.getStartLocation(),shift.getEndLocation())}"
             android:textColor="@color/mild_black"
             android:textSize="18sp"
             app:layout_constraintLeft_toRightOf="@id/imgView"
