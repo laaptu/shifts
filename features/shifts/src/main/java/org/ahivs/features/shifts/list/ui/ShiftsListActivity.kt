@@ -1,5 +1,6 @@
 package org.ahivs.features.shifts.list.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import org.ahivs.features.shifts.R
-import org.ahivs.features.shifts.actions.ShiftActionActivity
+import org.ahivs.features.shifts.actions.ui.ShiftActionActivity
 import org.ahivs.features.shifts.databinding.ActivityShiftsListBinding
 import org.ahivs.shared.base.ui.ViewModelActivity
 
@@ -88,6 +89,8 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SHIFT_ACTION && resultCode == Activity.RESULT_OK)
+            viewModel.refreshShifts()
     }
 
     override fun onDestroy() {

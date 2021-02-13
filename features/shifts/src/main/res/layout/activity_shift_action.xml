@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="time"
-            type="String" />
+            name="viewModel"
+            type="org.ahivs.features.shifts.actions.ui.ShiftActionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,12 +32,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/action_item_margin"
-            android:text="@{@string/shift_time(time)}"
             app:drawableLeftCompat="@drawable/ic_time"
             app:drawableTint="@color/icon_tint"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtArea" />
+            app:layout_constraintTop_toBottomOf="@id/txtArea"
+            app:shiftActionViewState="@{viewModel.viewState}" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtBreak"
@@ -66,12 +66,14 @@
             app:layout_constraintTop_toBottomOf="@id/txtBreak" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:indicatorColor="@color/mild_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shiftActionViewState="@{viewModel.viewState}" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnShiftAction"
@@ -79,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:shiftActionViewState="@{viewModel.viewState}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

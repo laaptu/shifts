@@ -7,6 +7,6 @@
     <application>
 
         <activity android:name=".list.ui.ShiftsListActivity" />
-        <activity android:name=".actions.ShiftActionActivity" />
+        <activity android:name=".actions.ui.ShiftActionActivity" />
     </application>
 </manifest>

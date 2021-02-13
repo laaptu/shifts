@@ -12,4 +12,5 @@
     <string name="employee_name">Employee: Tom Cruise</string>
 
     <string name="shift_time">Time:  %s</string>
+    <string name="success">Success</string>
 </resources>

@@ -11,10 +11,10 @@ import java.util.*
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_splash)
         Handler().postDelayed({
             startShiftsListActivity()
-        }, 1000)
+        }, 300)
     }
 
     private fun startShiftsListActivity() {
