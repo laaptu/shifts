@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class ShiftActionViewModel @Inject constructor(
     private val shiftActionRepo: ShiftActionRepo,
+    private val shiftDataProvider: ShiftDataProvider,
     private val locationFetcher: LocationFetcher
 ) :
     ViewModel() {

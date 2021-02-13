@@ -2,6 +2,12 @@ import org.ahivs.dependencies.Libs
 
 apply from: '../../scripts/androidlibs.gradle'
 
+android {
+    buildFeatures {
+        dataBinding true
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Libs.kotlin
