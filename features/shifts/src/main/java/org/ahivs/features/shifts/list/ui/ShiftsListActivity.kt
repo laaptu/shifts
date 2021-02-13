@@ -13,6 +13,7 @@ import org.ahivs.features.shifts.R
 import org.ahivs.features.shifts.actions.ui.ShiftActionActivity
 import org.ahivs.features.shifts.databinding.ActivityShiftsListBinding
 import org.ahivs.shared.base.ui.ViewModelActivity
+import org.ahivs.shared.base.utils.event.EventObserver
 
 
 class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
@@ -55,33 +56,23 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
     }
 
     private fun listenToViewModelEvents() {
-        viewModel.infoMsgDate.observe(this, Observer {
-            if (it == 0)
-                return@Observer
-            Snackbar.make(binding.fab, getString(it), Snackbar.LENGTH_SHORT).show()
-        })
+        viewModel.infoMsgDate.observe(this,
+            EventObserver {
+                Snackbar.make(binding.fab, getString(it), Snackbar.LENGTH_SHORT).show()
+            })
         viewModel.viewState.observe(this, Observer {
             if (it is LoadedStateWithStart)
                 shiftsListAdapter.submitList(it.shifts)
             else if (it is LoadedStateWithEnd)
                 shiftsListAdapter.submitList(it.shifts)
         })
-        viewModel.shiftAction.observe(this, Observer {
-            if (it is Start) {
-                startShiftActionActivity(ShiftActionActivity.launchWithStartAction(this))
-            } else if (it is End) {
-                startShiftActionActivity(
-                    ShiftActionActivity.launchWithEndAction(
-                        this,
-                        it.shiftToBeEnded.start
-                    )
-                )
+        viewModel.shiftAction.observe(this, EventObserver {
+            val intent = when (it) {
+                is Start -> ShiftActionActivity.launchWithStartAction(this)
+                is End -> ShiftActionActivity.launchWithEndAction(this, it.shiftToBeEnded.start)
             }
+            startActivityForResult(intent, REQUEST_SHIFT_ACTION)
         })
-    }
-
-    private fun startShiftActionActivity(intent: Intent) {
-        startActivityForResult(intent, REQUEST_SHIFT_ACTION)
     }
 
     private fun refreshShifts() = viewModel.refreshShifts()
@@ -93,8 +84,4 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
             viewModel.refreshShifts()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.clearResources()
-    }
 }

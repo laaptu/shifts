@@ -10,8 +10,8 @@ import org.ahivs.features.shifts.data.Shift
 import org.ahivs.features.shifts.list.domain.FetchError
 import org.ahivs.features.shifts.list.domain.FetchSuccess
 import org.ahivs.features.shifts.list.domain.ShiftsListRepo
-import org.ahivs.shared.base.di.ComponentScope
 import org.ahivs.shared.base.utils.Logger
+import org.ahivs.shared.base.utils.event.Event
 import javax.inject.Inject
 
 class ShiftsListViewModel @Inject constructor(
@@ -31,11 +31,11 @@ class ShiftsListViewModel @Inject constructor(
         MutableLiveData(prevViewState)
     val viewState: LiveData<ShiftListViewState> = _viewState
 
-    private val _infoMsgData: MutableLiveData<Int> = MutableLiveData()
-    val infoMsgDate: LiveData<Int> = _infoMsgData
+    private val _infoMsgData: MutableLiveData<Event<Int>> = MutableLiveData()
+    val infoMsgDate: LiveData<Event<Int>> = _infoMsgData
 
-    private val _shiftAction: MutableLiveData<ShiftAction> = MutableLiveData(None)
-    val shiftAction: LiveData<ShiftAction> = _shiftAction
+    private val _shiftAction: MutableLiveData<Event<ShiftAction>> = MutableLiveData()
+    val shiftAction: LiveData<Event<ShiftAction>> = _shiftAction
 
     fun fetchShifts() {
         if (_viewState.value != EmptyState)
@@ -52,7 +52,7 @@ class ShiftsListViewModel @Inject constructor(
             when (shiftsListResponse) {
                 is FetchSuccess -> handleSuccess(shiftsListResponse.shifts)
                 is FetchError -> {
-                    _infoMsgData.value = R.string.error_fetching_shifts
+                    sendInfoMsg(R.string.error_fetching_shifts)
                     _viewState.value = prevViewState
                 }
             }
@@ -63,8 +63,8 @@ class ShiftsListViewModel @Inject constructor(
         val currViewState: ShiftListViewState? = _viewState.value
         when (currViewState) {
             is EmptyState,
-            is LoadedStateWithStart -> _shiftAction.value = Start
-            is LoadedStateWithEnd -> _shiftAction.value = End(currViewState.shiftToBeEnded)
+            is LoadedStateWithStart -> sendShiftAction(Start)
+            is LoadedStateWithEnd -> sendShiftAction(End(currViewState.shiftToBeEnded))
             else -> logger.warn(TAG, "Cannot perform either add or remove action")
         }
     }
@@ -74,7 +74,7 @@ class ShiftsListViewModel @Inject constructor(
             logger.debug(TAG, "Setting the view state to ${prevViewState::class.java.simpleName}")
             _viewState.value = prevViewState
             if (prevViewState == EmptyState)
-                _infoMsgData.value = R.string.info_shift_not_added
+                sendInfoMsg(R.string.info_shift_not_added)
             return
         }
 
@@ -91,12 +91,16 @@ class ShiftsListViewModel @Inject constructor(
         logger.debug(TAG, "Setting the view state to ${prevViewState::class.java.simpleName}")
     }
 
+    private fun sendInfoMsg(msgId: Int) {
+        _infoMsgData.value = Event(msgId)
+    }
+
+    private fun sendShiftAction(shiftAction: ShiftAction) {
+        _shiftAction.value = Event(shiftAction)
+    }
+
     private fun getStartedShift(shifts: List<Shift>): Shift? = shifts.find {
         it.end.isEmpty()
     }
 
-    fun clearResources() {
-        _shiftAction.value = None
-        _infoMsgData.value = 0
-    }
 }
