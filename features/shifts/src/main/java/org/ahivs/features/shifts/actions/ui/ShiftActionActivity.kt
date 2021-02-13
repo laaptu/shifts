@@ -15,6 +15,7 @@ import org.ahivs.features.shifts.actions.domain.Success
 import org.ahivs.features.shifts.databinding.ActivityShiftActionBinding
 import org.ahivs.shared.base.ui.ViewModelActivity
 import org.ahivs.shared.base.ui.permissions.PermissionsRequest
+import org.ahivs.shared.base.utils.event.EventObserver
 
 class ShiftActionActivity : ViewModelActivity<ShiftActionViewModel>() {
 
@@ -83,12 +84,10 @@ class ShiftActionActivity : ViewModelActivity<ShiftActionViewModel>() {
                 supportActionBar?.title = getString(R.string.end_shift)
         })
 
-        viewModel.shiftResponse.observe(this, Observer {
+        viewModel.shiftResponse.observe(this, EventObserver {
             when (it) {
                 is Success -> finishWithSuccess()
                 is Failure -> showMsg(it.errorMsg)
-                else -> {
-                }
             }
         })
     }
@@ -102,10 +101,4 @@ class ShiftActionActivity : ViewModelActivity<ShiftActionViewModel>() {
         setResult(Activity.RESULT_OK)
         finish()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.clearResources()
-    }
-
 }

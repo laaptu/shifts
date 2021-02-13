@@ -26,7 +26,7 @@ object ShiftsListBindings {
 
     @JvmStatic
     @BindingAdapter("listViewState")
-    fun setViewState(view: View, listViewState: ShiftListViewState) {
+    fun setViewState(view: View, listViewState: ListViewState) {
         when (view) {
             is FloatingActionButton -> {
                 var visibility = View.VISIBLE

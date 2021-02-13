@@ -1,5 +1,7 @@
 package org.ahivs.features.shifts.actions.domain
 
+import org.ahivs.features.shifts.actions.domain.ShiftActionResponse.Companion.SUCCESS_SHIFT_END
+import org.ahivs.features.shifts.actions.domain.ShiftActionResponse.Companion.SUCCESS_SHIFT_START
 import org.ahivs.features.shifts.data.ShiftApiService
 import org.ahivs.features.shifts.data.ShiftData
 import org.ahivs.shared.base.utils.Logger
@@ -12,10 +14,6 @@ class ShiftActionRepo @Inject constructor(
 
     companion object {
         private val TAG: String = ShiftActionRepo::class.java.simpleName
-        private const val SUCCESS_SHIFT_START = "Start shift - All good"
-        private const val SHIFT_IN_PROGRESS = "Nope, shift already in progress"
-        private const val SUCCESS_SHIFT_END = "End shift - All good"
-        private const val SHIFT_NOT_STARTED = "Nope, no shift started to be closed"
     }
 
     suspend fun startShift(shiftData: ShiftData): ShiftActionResponse {

@@ -10,6 +10,8 @@
     <string name="area_sales">Area: Sales</string>
     <string name="meal_break">Break: 30 min (Meal Break)</string>
     <string name="employee_name">Employee: Tom Cruise</string>
+    <string name="add_a_shift">Start New Shift</string>
+    <string name="remove_shift">End Started Shift</string>
 
     <string name="shift_time">Time:  %s</string>
     <string name="success">Success</string>

@@ -12,25 +12,25 @@ import org.ahivs.features.shifts.utils.DateUtils
 object ShiftActionBindings {
     @JvmStatic
     @BindingAdapter("shiftActionViewState")
-    fun setShiftActionViewState(view: View, shiftActionState: ShiftActionViewState) {
+    fun setShiftActionViewState(view: View, state: ViewState) {
         when (view) {
             is MaterialTextView -> {
-                if (shiftActionState is StartShift)
-                    setTime(view, shiftActionState.time)
-                else if (shiftActionState is EndShift)
-                    setTime(view, shiftActionState.startTime)
+                if (state is StartShift)
+                    setTime(view, state.time)
+                else if (state is EndShift)
+                    setTime(view, state.startTime)
             }
             is CircularProgressIndicator -> {
-                if(shiftActionState == Progress)
+                if (state == Progress)
                     view.visibility = View.VISIBLE
                 else
                     view.visibility = View.GONE
             }
             is MaterialButton -> {
-                view.isEnabled = shiftActionState != Progress
-                if (shiftActionState is StartShift)
+                view.isEnabled = state != Progress
+                if (state is StartShift)
                     view.setText(R.string.start_shift)
-                else if (shiftActionState is EndShift)
+                else if (state is EndShift)
                     view.setText(R.string.end_shift)
             }
         }

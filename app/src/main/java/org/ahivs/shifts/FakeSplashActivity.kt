@@ -5,16 +5,29 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import org.ahivs.features.shifts.list.ui.ShiftsListActivity
-import java.text.SimpleDateFormat
-import java.util.*
 
-class SplashActivity : AppCompatActivity() {
+class FakeSplashActivity : AppCompatActivity() {
+
+    companion object {
+        private const val DELAY = 300L
+    }
+
+    private val navigateRunnable = Runnable { startShiftsListActivity() }
+    private val handler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Handler().postDelayed({
-            startShiftsListActivity()
-        }, 300)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(navigateRunnable, DELAY)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(navigateRunnable)
     }
 
     private fun startShiftsListActivity() {

@@ -56,15 +56,18 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
     }
 
     private fun listenToViewModelEvents() {
-        viewModel.infoMsgDate.observe(this,
+        viewModel.infoMsg.observe(this,
             EventObserver {
                 Snackbar.make(binding.fab, getString(it), Snackbar.LENGTH_SHORT).show()
             })
         viewModel.viewState.observe(this, Observer {
-            if (it is LoadedStateWithStart)
+            if (it is LoadedStateWithStart) {
+                setActionBarTitle(R.string.add_a_shift)
                 shiftsListAdapter.submitList(it.shifts)
-            else if (it is LoadedStateWithEnd)
+            } else if (it is LoadedStateWithEnd) {
+                setActionBarTitle(R.string.remove_shift)
                 shiftsListAdapter.submitList(it.shifts)
+            }
         })
         viewModel.shiftAction.observe(this, EventObserver {
             val intent = when (it) {
@@ -77,6 +80,11 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
 
     private fun refreshShifts() = viewModel.refreshShifts()
     private fun invokeShiftStartEndAction() = viewModel.invokeShiftStartEndAction()
+    private fun setActionBarTitle(titleResId: Int) {
+        supportActionBar?.apply {
+            title = getString(titleResId)
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

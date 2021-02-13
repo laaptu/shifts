@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class ShiftsListViewModel @Inject constructor(
     private val shiftsListRepo: ShiftsListRepo,
-    viewStateProvider: ShiftListViewStateProvider,
+    viewStateProvider: ListViewStateProvider,
     private val logger: Logger
 ) :
     ViewModel() {
@@ -25,14 +25,14 @@ class ShiftsListViewModel @Inject constructor(
         private val TAG: String = ShiftsListViewModel::class.java.simpleName
     }
 
-    private var prevViewState: ShiftListViewState = viewStateProvider.getInitialShiftListViewState()
+    private var prevViewState: ListViewState = viewStateProvider.getInitialShiftListViewState()
 
-    private val _viewState: MutableLiveData<ShiftListViewState> =
+    private val _viewState: MutableLiveData<ListViewState> =
         MutableLiveData(prevViewState)
-    val viewState: LiveData<ShiftListViewState> = _viewState
+    val viewState: LiveData<ListViewState> = _viewState
 
-    private val _infoMsgData: MutableLiveData<Event<Int>> = MutableLiveData()
-    val infoMsgDate: LiveData<Event<Int>> = _infoMsgData
+    private val _infoMsg: MutableLiveData<Event<Int>> = MutableLiveData()
+    val infoMsg: LiveData<Event<Int>> = _infoMsg
 
     private val _shiftAction: MutableLiveData<Event<ShiftAction>> = MutableLiveData()
     val shiftAction: LiveData<Event<ShiftAction>> = _shiftAction
@@ -60,7 +60,7 @@ class ShiftsListViewModel @Inject constructor(
     }
 
     fun invokeShiftStartEndAction() {
-        val currViewState: ShiftListViewState? = _viewState.value
+        val currViewState: ListViewState? = _viewState.value
         when (currViewState) {
             is EmptyState,
             is LoadedStateWithStart -> sendShiftAction(Start)
@@ -92,7 +92,7 @@ class ShiftsListViewModel @Inject constructor(
     }
 
     private fun sendInfoMsg(msgId: Int) {
-        _infoMsgData.value = Event(msgId)
+        _infoMsg.value = Event(msgId)
     }
 
     private fun sendShiftAction(shiftAction: ShiftAction) {
