@@ -8,6 +8,7 @@ import org.ahivs.shared.base.di.DaggerBaseComponent
 import org.ahivs.shifts.di.DaggerAppComponent
 import javax.inject.Inject
 
+
 class MainApplication : Application(), HasAndroidInjector {
 
     @Inject

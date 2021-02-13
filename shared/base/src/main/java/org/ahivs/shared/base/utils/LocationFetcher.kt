@@ -19,7 +19,6 @@ import javax.inject.Singleton
  *  Use this class only when you have access to Android permission ACCESS_FINE_LOCATION,
  *  otherwise it won't return the needed location info
  */
-@AppScope
 class LocationFetcher @Inject constructor(applicationContext: Context, private val logger: Logger) {
 
     companion object {
