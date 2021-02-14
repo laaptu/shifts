@@ -27,7 +27,6 @@ class ShiftActionViewModel @Inject constructor(
 
     companion object {
         private val TAG: String = ShiftActionViewModel::class.java.simpleName
-        private const val DUMMY_LOCATION = "0.000"
     }
 
     private var prevViewState: ViewState = viewStateProvider.getInitialShiftActionState()
@@ -48,7 +47,7 @@ class ShiftActionViewModel @Inject constructor(
         prevViewState = if (startTime == null) {
             StartShift(shiftDataProvider.getCurrentTime())
         } else {
-            EndShift(startTime)
+            EndShift(shiftDataProvider.getCurrentTime())
         }
         _viewState.value = prevViewState
     }
@@ -58,8 +57,7 @@ class ShiftActionViewModel @Inject constructor(
             return
         viewModelScope.launch {
             _viewState.value = Progress
-            val (latitude, longitude) = getLocation(enableLocationFetch)
-            val shiftData: ShiftData = shiftDataProvider.createShiftData(latitude, longitude)
+            val shiftData = createShiftData()
             val shiftActionResponse = if (prevViewState is StartShift) {
                 shiftActionRepo.startShift(shiftData)
             } else {
@@ -70,16 +68,23 @@ class ShiftActionViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getLocation(enableLocationFetch: Boolean): Pair<String, String> {
-        if (!enableLocationFetch)
-            return Pair(DUMMY_LOCATION, DUMMY_LOCATION)
+    private suspend fun createShiftData(): ShiftData {
+        return if (enableLocationFetch) {
+            val (latitude, longitude) = getLocation()
+            shiftDataProvider.createShiftData(latitude, longitude)
+        } else {
+            shiftDataProvider.createShiftData()
+        }
+    }
+
+    private suspend fun getLocation(): Pair<String?, String?> {
         val locationInfo = locationFetcher.fetchCurrentLocation()
         return when (locationInfo) {
             is LocationFetchSuccess -> Pair(
                 locationInfo.latitude.toString(),
                 locationInfo.longitude.toString()
             )
-            is LocationFetchError -> Pair(DUMMY_LOCATION, DUMMY_LOCATION)
+            is LocationFetchError -> Pair(null, null)
         }
     }
 
