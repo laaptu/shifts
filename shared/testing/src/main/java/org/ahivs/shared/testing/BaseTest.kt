@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.RegisterExtension
 
 
 @ExtendWith(TaskExecutorRule::class)
-abstract class BaseViewModelTest {
+abstract class BaseTest {
     @RegisterExtension
     @JvmField
     val coroutinesTestRule = CoroutinesTestRule()

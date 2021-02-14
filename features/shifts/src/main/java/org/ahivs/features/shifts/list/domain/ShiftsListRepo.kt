@@ -17,10 +17,10 @@ class ShiftsListRepo @Inject constructor(
             val shifts = shiftApiService.getShifts()
             logger.debug(TAG, "Shifts fetched successfully of size = ${shifts.size}")
             FetchSuccess(shifts)
-        } catch (npt: NullPointerException) {
+        } catch (npe: NullPointerException) {
             //as API is returning null for empty list, it is done in this manner
             //ideally API should have returned empty list as json payload
-            logger.warn(TAG, "Returning empty lists due to:\n$npt\n${npt.message}")
+            logger.warn(TAG, "Returning empty lists due to:\n$npe\n${npe.message}")
             FetchSuccess(emptyList())
         } catch (exception: Exception) {
             val errorMsg = exception?.message ?: "Error fetching shifts"
