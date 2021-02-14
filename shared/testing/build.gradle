@@ -10,6 +10,7 @@ dependencies {
     api TestLibs.junit5Params
     api TestLibs.mockitoCore
     api TestLibs.mockitoInline
+    api TestLibs.mockitoKotlin
     implementation TestLibs.coroutine
     implementation TestLibs.Android.arch
 }

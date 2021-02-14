@@ -24,6 +24,7 @@ object Version {
 
     //testlib version
     const val mockito = "2.25.0"
+    const val mockitoKotlin = "2.2.0"
     const val junit5 = "5.5.1"
     const val archTesting = "2.1.0"
 }
@@ -75,6 +76,7 @@ object Libs {
 object TestLibs {
     const val mockitoCore = "org.mockito:mockito-core:${Version.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:${Version.mockito}"
+    const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.mockitoKotlin}"
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
 
     const val junit5 = "org.junit.jupiter:junit-jupiter-api:${Version.junit5}"
