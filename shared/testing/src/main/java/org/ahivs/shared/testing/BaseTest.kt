@@ -12,6 +12,7 @@ abstract class BaseTest {
     @JvmField
     val coroutinesTestRule = CoroutinesTestRule()
 
+
     @OptIn()
     fun runBlockingTest(block: suspend TestCoroutineScope.() -> Unit) {
         coroutinesTestRule.testDispatcher.runBlockingTest(block)

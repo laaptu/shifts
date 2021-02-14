@@ -8,6 +8,7 @@ import org.ahivs.features.shifts.data.ShiftApiService
 import org.ahivs.features.shifts.data.ShiftData
 import org.ahivs.shared.base.utils.Logger
 import org.ahivs.shared.testing.BaseTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -68,7 +69,7 @@ class ShiftActionRepoTest : BaseTest() {
                 `when`(shiftApiService.startShift(shiftData)).thenReturn(invalidResponse)
                 val response = shiftActionRepo.startShift(shiftData)
                 assertTrue(response is Failure)
-                assertTrue((response as Failure).errorMsg == invalidResponse)
+                assertEquals(invalidResponse, (response as Failure).errorMsg)
             }
         }
 
@@ -89,7 +90,7 @@ class ShiftActionRepoTest : BaseTest() {
                 }
                 val response = shiftActionRepo.startShift(shiftData)
                 assertTrue(response is Failure)
-                assertTrue((response as Failure).errorMsg == exceptionMsg)
+                assertEquals(exceptionMsg, (response as Failure).errorMsg)
             }
         }
     }
@@ -126,7 +127,7 @@ class ShiftActionRepoTest : BaseTest() {
                 `when`(shiftApiService.endShift(shiftData)).thenReturn(invalidResponse)
                 val response = shiftActionRepo.endShift(shiftData)
                 assertTrue(response is Failure)
-                assertTrue((response as Failure).errorMsg == invalidResponse)
+                assertEquals(invalidResponse, (response as Failure).errorMsg)
             }
         }
 
@@ -147,7 +148,7 @@ class ShiftActionRepoTest : BaseTest() {
                 }
                 val response = shiftActionRepo.endShift(shiftData)
                 assertTrue(response is Failure)
-                assertTrue((response as Failure).errorMsg == exceptionMsg)
+                assertEquals(exceptionMsg,(response as Failure).errorMsg)
             }
         }
     }

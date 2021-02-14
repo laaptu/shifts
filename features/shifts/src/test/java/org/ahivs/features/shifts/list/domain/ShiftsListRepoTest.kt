@@ -4,6 +4,7 @@ import org.ahivs.features.shifts.data.Shift
 import org.ahivs.features.shifts.data.ShiftApiService
 import org.ahivs.shared.base.utils.Logger
 import org.ahivs.shared.testing.BaseTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -45,7 +46,7 @@ class ShiftsListRepoTest : BaseTest() {
             `when`(shiftApiService.getShifts()).thenReturn(validShifts)
             val response = shiftListRepo.getShifts()
             assertTrue(response is FetchSuccess)
-            assertTrue((response as FetchSuccess).shifts == validShifts)
+            assertEquals(validShifts, (response as FetchSuccess).shifts)
         }
     }
 
@@ -85,8 +86,8 @@ class ShiftsListRepoTest : BaseTest() {
             }
             val response = shiftListRepo.getShifts()
             assertTrue(response is FetchError)
-            assertTrue((response as FetchError).errorMsg == errorMsg)
-            assertTrue(response.exception == exception)
+            assertEquals(errorMsg, (response as FetchError).errorMsg)
+            assertEquals(exception, response.exception)
         }
     }
 }

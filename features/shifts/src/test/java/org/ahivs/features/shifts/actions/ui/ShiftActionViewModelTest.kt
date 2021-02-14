@@ -16,6 +16,7 @@ import org.ahivs.shared.base.utils.LocationFetcher
 import org.ahivs.shared.base.utils.Logger
 import org.ahivs.shared.testing.BaseTest
 import org.ahivs.shared.testing.getOrAwaitValue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -229,7 +230,7 @@ class ShiftActionViewModelTest : BaseTest() {
             viewModel.init(startTime = null)
             viewModel.invokeShiftStartEndAction()
             val response = viewModel.shiftResponse.getOrAwaitValue()
-            assertTrue(response.peek() == successResponse)
+            assertEquals(successResponse, response.peek())
         }
     }
 
@@ -247,7 +248,7 @@ class ShiftActionViewModelTest : BaseTest() {
             viewModel.init(startTime = null)
             viewModel.invokeShiftStartEndAction()
             val response = viewModel.shiftResponse.getOrAwaitValue()
-            assertTrue(response.peek() == failureResponse)
+            assertEquals(failureResponse, response.peek())
         }
     }
 
@@ -265,7 +266,7 @@ class ShiftActionViewModelTest : BaseTest() {
             viewModel.init(startTime = DateUtils.getCurrentTime())
             viewModel.invokeShiftStartEndAction()
             val response = viewModel.shiftResponse.getOrAwaitValue()
-            assertTrue(response.peek() == successResponse)
+            assertEquals(successResponse, response.peek())
         }
     }
 
@@ -283,7 +284,7 @@ class ShiftActionViewModelTest : BaseTest() {
             viewModel.init(startTime = DateUtils.getCurrentTime())
             viewModel.invokeShiftStartEndAction()
             val response = viewModel.shiftResponse.getOrAwaitValue()
-            assertTrue(response.peek() == failureResponse)
+            assertEquals(failureResponse, response.peek())
         }
     }
 }
