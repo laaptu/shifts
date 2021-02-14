@@ -36,4 +36,7 @@ dependencies {
 
     implementation Libs.picasso
 
+    testRuntimeOnly TestLibs.junit5Engine
+    testImplementation project(':test')
+
 }
