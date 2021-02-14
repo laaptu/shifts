@@ -61,12 +61,18 @@ class ShiftsListActivity : ViewModelActivity<ShiftsListViewModel>() {
                 Snackbar.make(binding.fab, getString(it), Snackbar.LENGTH_SHORT).show()
             })
         viewModel.viewState.observe(this, Observer {
-            if (it is LoadedStateWithStart) {
-                setActionBarTitle(R.string.add_a_shift)
-                shiftsListAdapter.submitList(it.shifts)
-            } else if (it is LoadedStateWithEnd) {
-                setActionBarTitle(R.string.remove_shift)
-                shiftsListAdapter.submitList(it.shifts)
+            when (it) {
+                is LoadedStateWithStart -> {
+                    setActionBarTitle(R.string.add_a_shift)
+                    shiftsListAdapter.submitList(it.shifts)
+                }
+                is LoadedStateWithEnd -> {
+                    setActionBarTitle(R.string.remove_shift)
+                    shiftsListAdapter.submitList(it.shifts)
+                }
+                is EmptyState -> {
+                    setActionBarTitle(R.string.add_a_shift)
+                }
             }
         })
         viewModel.shiftAction.observe(this, EventObserver {

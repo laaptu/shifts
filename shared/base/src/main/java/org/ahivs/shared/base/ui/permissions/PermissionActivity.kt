@@ -30,6 +30,8 @@ abstract class PermissionActivity : BaseActivity(),
         if (deniedPermissions.isEmpty()) {
             notifySuccess()
         } else {
+            //this is just assumption that location is essential for shifts
+            //but if can be later modified  or removed
             showPermissionsDeniedAlert(deniedPermissions)
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -152,10 +154,11 @@ abstract class PermissionActivity : BaseActivity(),
     private fun isPermissionGranted(permission: String): Boolean =
         ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
-    open fun onPermissionsGranted(){
+    open fun onPermissionsGranted() {
 
     }
-    open fun onPermissionsDenied(deniedPermissions: List<String>){
+
+    open fun onPermissionsDenied(deniedPermissions: List<String>) {
 
     }
 }
